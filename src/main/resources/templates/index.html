@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cool vehicle page</title>
+</head>
+<body>
+
+<a href="/add-vehicle">Dodaj pojazd</a>
+<div th:switch="${vehicles}">
+    <h2 th:case="null">Brak zarejestrowanych pojazdów</h2>
+    <div th:case="*">
+        <h2>Pojazdy</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numer Rejestracyjny</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="vehicle : ${vehicles}">
+                <td th:text="${vehicle.id}"></td>
+                <td th:text="${vehicle.registrationNumber}"></td>
+                <td><a th:href="@{/edit/{id}(id=${vehicle.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${vehicle.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

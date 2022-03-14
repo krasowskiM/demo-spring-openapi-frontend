@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cool vehicle page</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/addVehicle}" th:object="${vehicle}" method="post">
+    <label for="registrationNumber">Numer rejestracyjny</label>
+    <input type="text" th:field="*{registrationNumber}" id="registrationNumber" placeholder="Numer rejestracyjny">
+    <input type="submit" value="Dodaj pojazd">
+</form>
+</body>
+</html>
