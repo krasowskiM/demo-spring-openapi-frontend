@@ -44,6 +44,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.6.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -72,6 +82,41 @@
 						<version>${kotlin.version}</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<!-- RELEASE_VERSION -->
+				<version>5.4.0</version>
+				<!-- /RELEASE_VERSION -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/api-docs.yaml</inputSpec>
+							<!--ustaw na false jezeli potrzebujesz przegenerowac api-->
+							<skip>false</skip>
+							<output>src/main/kotlin</output>
+							<generatorName>java</generatorName>
+							<generateApiDocumentation>false</generateApiDocumentation>
+							<generateModelDocumentation>false</generateModelDocumentation>
+							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
+							<generateApis>true</generateApis>
+
+							<configOptions>
+								<library>resttemplate</library>
+								<dateLibrary>java8</dateLibrary>
+								<serializationLibrary>jackson</serializationLibrary>
+								<sourceFolder>/</sourceFolder>
+								<modelPackage>com.example.demospringopenapifrontend.model.generated</modelPackage>
+								<apiPackage>com.example.demospringopenapifrontend.integration.generated</apiPackage>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

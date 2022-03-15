@@ -1,0 +1,84 @@
+openapi: 3.0.1
+info:
+  title: vehicle API
+  description: api for vehicle data processing
+  version: "1"
+servers:
+- url: http://localhost:8090
+  description: Generated server url
+paths:
+  /api/vehicle:
+    get:
+      tags:
+      - vehicle-controller
+      description: get all vehicles
+      operationId: getAllVehicles
+      responses:
+        "200":
+          description: get all vehicles when no issues ocurred
+          content:
+            '*/*':
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+    put:
+      tags:
+      - vehicle-controller
+      description: save a vehicle
+      operationId: saveVehicle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        "200":
+          description: vehicle saved successfully
+        "503":
+          description: service unavailable when queue processing in effect
+  /api/vehicle/{id}:
+    get:
+      tags:
+      - vehicle-controller
+      operationId: getVehicle
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+    delete:
+      tags:
+      - vehicle-controller
+      operationId: deleteVehicle
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        registrationNumber:
+          type: string

@@ -1,0 +1,97 @@
+openapi: 3.0.1
+info:
+  description: api for vehicle data processing
+  title: vehicle API
+  version: "1"
+servers:
+- description: Generated server url
+  url: http://localhost:8090
+paths:
+  /api/vehicle:
+    get:
+      description: get all vehicles
+      operationId: getAllVehicles
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+                type: array
+                uniqueItems: true
+          description: get all vehicles when no issues ocurred
+      tags:
+      - vehicle-controller
+      x-accepts: '*/*'
+    put:
+      description: save a vehicle
+      operationId: saveVehicle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vehicle'
+        required: true
+      responses:
+        "200":
+          description: vehicle saved successfully
+        "503":
+          description: service unavailable when queue processing in effect
+      tags:
+      - vehicle-controller
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/vehicle/{id}:
+    delete:
+      operationId: deleteVehicle
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - vehicle-controller
+      x-accepts: application/json
+    get:
+      operationId: getVehicle
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+          description: OK
+      tags:
+      - vehicle-controller
+      x-accepts: '*/*'
+components:
+  schemas:
+    Vehicle:
+      example:
+        registrationNumber: registrationNumber
+        id: 0
+      properties:
+        id:
+          format: int32
+          type: integer
+        registrationNumber:
+          type: string
+      type: object
+
