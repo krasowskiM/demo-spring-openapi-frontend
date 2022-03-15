@@ -3,14 +3,13 @@ package com.example.demospringopenapifrontend.integration.generated;
 import com.example.demospringopenapifrontend.integration.ApiClient;
 
 import java.util.Set;
-import com.example.demospringopenapifrontend.model.generated.Vehicle;
+
+import com.example.demospringopenapifrontend.model.generated.VehicleGenerated;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -101,7 +99,7 @@ public class VehicleControllerApi {
      * @return Set&lt;Vehicle&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public Set<Vehicle> getAllVehicles() throws RestClientException {
+    public Set<VehicleGenerated> getAllVehicles() throws RestClientException {
         return getAllVehiclesWithHttpInfo().getBody();
     }
 
@@ -112,7 +110,7 @@ public class VehicleControllerApi {
      * @return ResponseEntity&lt;Set&lt;Vehicle&gt;&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Set<Vehicle>> getAllVehiclesWithHttpInfo() throws RestClientException {
+    public ResponseEntity<Set<VehicleGenerated>> getAllVehiclesWithHttpInfo() throws RestClientException {
         Object postBody = null;
         
 
@@ -130,7 +128,7 @@ public class VehicleControllerApi {
 
         String[] authNames = new String[] {  };
 
-        ParameterizedTypeReference<Set<Vehicle>> returnType = new ParameterizedTypeReference<Set<Vehicle>>() {};
+        ParameterizedTypeReference<Set<VehicleGenerated>> returnType = new ParameterizedTypeReference<Set<VehicleGenerated>>() {};
         return apiClient.invokeAPI("/api/vehicle", HttpMethod.GET, Collections.<String, Object>emptyMap(), queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, authNames, returnType);
     }
     /**
@@ -141,7 +139,7 @@ public class VehicleControllerApi {
      * @return Vehicle
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public Vehicle getVehicle(Integer id) throws RestClientException {
+    public VehicleGenerated getVehicle(Integer id) throws RestClientException {
         return getVehicleWithHttpInfo(id).getBody();
     }
 
@@ -153,7 +151,7 @@ public class VehicleControllerApi {
      * @return ResponseEntity&lt;Vehicle&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Vehicle> getVehicleWithHttpInfo(Integer id) throws RestClientException {
+    public ResponseEntity<VehicleGenerated> getVehicleWithHttpInfo(Integer id) throws RestClientException {
         Object postBody = null;
         
         // verify the required parameter 'id' is set
@@ -179,7 +177,7 @@ public class VehicleControllerApi {
 
         String[] authNames = new String[] {  };
 
-        ParameterizedTypeReference<Vehicle> returnType = new ParameterizedTypeReference<Vehicle>() {};
+        ParameterizedTypeReference<VehicleGenerated> returnType = new ParameterizedTypeReference<VehicleGenerated>() {};
         return apiClient.invokeAPI("/api/vehicle/{id}", HttpMethod.GET, uriVariables, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, authNames, returnType);
     }
     /**
@@ -187,11 +185,11 @@ public class VehicleControllerApi {
      * save a vehicle
      * <p><b>200</b> - vehicle saved successfully
      * <p><b>503</b> - service unavailable when queue processing in effect
-     * @param vehicle  (required)
+     * @param vehicleGenerated  (required)
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public void saveVehicle(Vehicle vehicle) throws RestClientException {
-        saveVehicleWithHttpInfo(vehicle);
+    public void saveVehicle(VehicleGenerated vehicleGenerated) throws RestClientException {
+        saveVehicleWithHttpInfo(vehicleGenerated);
     }
 
     /**
@@ -199,15 +197,15 @@ public class VehicleControllerApi {
      * save a vehicle
      * <p><b>200</b> - vehicle saved successfully
      * <p><b>503</b> - service unavailable when queue processing in effect
-     * @param vehicle  (required)
+     * @param vehicleGenerated  (required)
      * @return ResponseEntity&lt;Void&gt;
      * @throws RestClientException if an error occurs while attempting to invoke the API
      */
-    public ResponseEntity<Void> saveVehicleWithHttpInfo(Vehicle vehicle) throws RestClientException {
-        Object postBody = vehicle;
+    public ResponseEntity<Void> saveVehicleWithHttpInfo(VehicleGenerated vehicleGenerated) throws RestClientException {
+        Object postBody = vehicleGenerated;
         
         // verify the required parameter 'vehicle' is set
-        if (vehicle == null) {
+        if (vehicleGenerated == null) {
             throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Missing the required parameter 'vehicle' when calling saveVehicle");
         }
         

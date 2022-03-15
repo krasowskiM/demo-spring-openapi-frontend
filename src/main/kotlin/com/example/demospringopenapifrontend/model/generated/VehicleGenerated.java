@@ -14,37 +14,33 @@
 package com.example.demospringopenapifrontend.model.generated;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Vehicle
  */
 @JsonPropertyOrder({
-  Vehicle.JSON_PROPERTY_ID,
-  Vehicle.JSON_PROPERTY_REGISTRATION_NUMBER
+  VehicleGenerated.JSON_PROPERTY_ID,
+  VehicleGenerated.JSON_PROPERTY_REGISTRATION_NUMBER
 })
 @JsonTypeName("Vehicle")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-03-15T14:19:34.444285400+01:00[Europe/Warsaw]")
-public class Vehicle {
+public class VehicleGenerated {
   public static final String JSON_PROPERTY_ID = "id";
   private Integer id;
 
   public static final String JSON_PROPERTY_REGISTRATION_NUMBER = "registrationNumber";
   private String registrationNumber;
 
-  public Vehicle() { 
+  public VehicleGenerated() {
   }
 
-  public Vehicle id(Integer id) {
+  public VehicleGenerated id(Integer id) {
     
     this.id = id;
     return this;
@@ -71,7 +67,7 @@ public class Vehicle {
   }
 
 
-  public Vehicle registrationNumber(String registrationNumber) {
+  public VehicleGenerated registrationNumber(String registrationNumber) {
     
     this.registrationNumber = registrationNumber;
     return this;
@@ -106,9 +102,9 @@ public class Vehicle {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Vehicle vehicle = (Vehicle) o;
-    return Objects.equals(this.id, vehicle.id) &&
-        Objects.equals(this.registrationNumber, vehicle.registrationNumber);
+    VehicleGenerated vehicleGenerated = (VehicleGenerated) o;
+    return Objects.equals(this.id, vehicleGenerated.id) &&
+        Objects.equals(this.registrationNumber, vehicleGenerated.registrationNumber);
   }
 
   @Override
